@@ -1,5 +1,25 @@
 var appAvailability = {
     
+    id: function(successCallback, errorCallback) {
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            "AppAvailability",
+            "getId",
+            []
+        );
+    },
+
+    apps: function(successCallback, errorCallback) {
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            "AppAvailability",
+            "getApps",
+            []
+        );
+    },
+
     check: function(urlScheme, successCallback, errorCallback) {
         cordova.exec(
             successCallback,
