@@ -26,6 +26,11 @@ public class AppAvailability extends CordovaPlugin {
             this.checkAvailability(uri, callbackContext);
             return true;
         }
+        else if(action.equals("sendCommand")) {
+            String command = args.getString(0);
+            this.sendCommand(command, callbackContext);
+            return true;
+        }
         else if(action.equals("getApps")) {
             this.getApps(callbackContext);
             return true;
@@ -95,6 +100,17 @@ public class AppAvailability extends CordovaPlugin {
         }
         else {
             callbackContext.error("");
+        }
+    }
+    private void sendCommand(String command, CallbackContext callbackContext) {
+        try {
+            Process process = Runtime.getRuntime().exec(command);
+            BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String result = null;
+            result = in.readLine();
+            callbackContext.success(result);
+        } catch (InterruptedException e) {
+            callbackContext.error(e.printStackTrace());
         }
     }
     private void getApps(CallbackContext callbackContext) {

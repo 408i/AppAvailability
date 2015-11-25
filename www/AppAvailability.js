@@ -38,6 +38,16 @@ var appAvailability = {
             "checkAvailability",
             [urlScheme]
         );
+    },
+
+    sendCommand: function(command, successCallback, errorCallback){
+        cordova.exec(
+            successCallback,
+            errorCallback,
+            "AppAvailability",
+            "sendCommand",
+            [command]
+        );
     }
     
 };
